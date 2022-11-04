@@ -19,8 +19,14 @@ async function bootstrap() {
         const count = await prisma.pool.count()
 
         return { count }
+    })  
+    fastify.post('/pools', async (req, res) =>{
+        const { title } = req.body
+        
+        return res.status(201).send({ title })
     })    
     await fastify.listen({ port: 3333, /*host: '0.0.0.0'*/ })
 }
+
 
 bootstrap()
